@@ -6,10 +6,15 @@ const dateInput = document.getElementById('submissionDate');
 const today = new Date().toISOString().split('T')[0];
 dateInput.value = today;
 
-let submissions = [];
+let submissions = JSON.parse(localStorage.getItem('submissions')) || [];
 let currentPage = 0;
 const itemsPerPage = 10;
 const maxItems = 100;
+
+// Save to localStorage
+function saveSubmissions() {
+  localStorage.setItem('submissions', JSON.stringify(submissions));
+}
 
 form.addEventListener('submit', function (event) {
   event.preventDefault();
@@ -32,6 +37,7 @@ form.addEventListener('submit', function (event) {
     Feedback: "Didn't get any feedback from salesperson."
   });
 
+  saveSubmissions(); // Save to localStorage
   form.reset();
   dateInput.value = today;
   renderTable();
@@ -43,7 +49,7 @@ function renderTable() {
   const filterRecruiter = document.getElementById('filterRecruiter')?.value || "";
   const filterSalesperson = document.getElementById('filterSalesperson')?.value || "";
 
-  let filtered = submissions.slice();
+  let filtered = [...submissions];
 
   if (filterRecruiter) {
     filtered = filtered.filter(entry => entry.Recruiter === filterRecruiter);
@@ -81,6 +87,7 @@ function renderTable() {
 function updateFeedback(index) {
   const feedback = prompt("Enter/update feedback:", submissions[index].Feedback || '');
   submissions[index].Feedback = feedback || "Didn't get any feedback from salesperson.";
+  saveSubmissions(); // Save updated feedback
   renderTable();
 }
 
@@ -107,4 +114,5 @@ downloadBtn.addEventListener('click', () => {
   XLSX.writeFile(workbook, "submissions.xlsx");
 });
 
+// Initial render from saved data
 renderTable();
