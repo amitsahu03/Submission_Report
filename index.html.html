@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Consultant Submission Tool</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <h2>Consultant Submission</h2>
+      <form id="submissionForm">
+        <label for="recruiter">Select Recruiter</label>
+        <select id="recruiter" required>
+          <option value="">--Select--</option>
+          <option value="Aman Tiwari">Aman Tiwari</option>
+          <option value="Amit Sahu">Amit Sahu</option>
+          <option value="Ashish Kumar">Ashish Kumar</option>
+          <option value="Gayatri Kumari">Gayatri Kumari</option>
+          <option value="Jyoti Pandey">Jyoti Pandey</option>
+          <option value="Pardeep Kharb">Pardeep Kharb</option>
+          <option value="Pravesh Yadav">Pravesh Yadav</option>
+        </select>
+
+        <label for="consultantEmail">Consultant Email</label>
+        <input type="email" id="consultantEmail" required />
+
+        <label for="salesperson">Salesperson Name</label>
+        <select id="salesperson" required>
+          <option value="">--Select--</option>
+          <option value="Utkarsh Singh">Utkarsh Singh</option>
+          <option value="Megha Phugat">Megha Phugat</option>
+          <option value="Shivam Arora">Shivam Arora</option>
+          <option value="Shivam Kumar">Shivam Kumar</option>
+          <option value="Deepank Kumar">Deepank Kumar</option>
+          <option value="Vikash Gaurav">Vikash Gaurav</option>
+          <option value="Nikita Rai">Nikita Rai</option>
+          <option value="Ayush Gupta">Ayush Gupta</option>
+        </select>
+
+        <label for="submissionDate">Submission Date</label>
+        <input type="date" id="submissionDate" required />
+
+        <button class="submit-btn" type="submit">Submit</button>
+      </form>
+    </div>
+
+    <div class="table-container">
+      <h3>Recent Submissions (max 100)</h3>
+
+      <div class="filters">
+        <label for="filterRecruiter">Filter by Recruiter:</label>
+        <select id="filterRecruiter" onchange="renderTable()">
+          <option value="">All</option>
+          <option value="Aman Tiwari">Aman Tiwari</option>
+          <option value="Amit Sahu">Amit Sahu</option>
+          <option value="Ashish Kumar">Ashish Kumar</option>
+          <option value="Gayatri Kumari">Gayatri Kumari</option>
+          <option value="Jyoti Pandey">Jyoti Pandey</option>
+          <option value="Pardeep Kharb">Pardeep Kharb</option>
+          <option value="Pravesh Yadav">Pravesh Yadav</option>
+        </select>
+
+        <label for="filterSalesperson">Filter by Salesperson:</label>
+        <select id="filterSalesperson" onchange="renderTable()">
+          <option value="">All</option>
+          <option value="Utkarsh Singh">Utkarsh Singh</option>
+          <option value="Megha Phugat">Megha Phugat</option>
+          <option value="Shivam Arora">Shivam Arora</option>
+          <option value="Shivam Kumar">Shivam Kumar</option>
+          <option value="Deepank Kumar">Deepank Kumar</option>
+          <option value="Vikash Gaurav">Vikash Gaurav</option>
+          <option value="Nikita Rai">Nikita Rai</option>
+          <option value="Ayush Gupta">Ayush Gupta</option>
+        </select>
+      </div>
+
+      <table id="submissionTable">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Recruiter</th>
+            <th>Consultant Email</th>
+            <th>Salesperson</th>
+            <th>Feedback</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+
+      <div>
+        <button class="pagination-btn" onclick="prevPage()">Previous 10</button>
+        <button class="pagination-btn" onclick="nextPage()">Next 10</button>
+      </div>
+
+      <button id="downloadBtn">Download All as Excel</button>
+    </div>
+  </div>
+    
+
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
